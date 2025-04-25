@@ -1,0 +1,4 @@
+gunicorn
+Flask
+web3
+eth-account
