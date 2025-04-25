@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Journal - NFT Rewards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nft.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <h1>Kryple</h1>
+                <p>Digital Journal</p>
+            </div>
+            <div class="user-controls">
+                <span class="user-welcome">Welcome, {{ username }}</span>
+                <a href="/logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/rewards">Rewards</a></li>
+                <li><span aria-current="page">NFT Collection</span></li>
+            </ol>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content-container">
+            <div class="nft-section">
+                <div class="nft-header">
+                    <h2><i class="fas fa-gem"></i> NFT Collection</h2>
+                    <p>Claim exclusive NFTs using your journal points</p>
+                    <div class="user-points">
+                        <i class="fas fa-star"></i>
+                        <span id="available-points">0</span> points available
+                    </div>
+                </div>
+                
+                <div class="nft-grid" id="nft-grid">
+                    <!-- NFTs will be populated by JavaScript -->
+                    <div class="loading">
+                        <div class="loader"></div>
+                        <p>Loading NFT collection...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="glass-card">
+                    <h3>Your Wallet</h3>
+                    <div class="wallet-address">{{ wallet_address }}</div>
+                </div>
+                
+                <div class="glass-card">
+                    <h3>NFT Information</h3>
+                    <div class="nft-info-sidebar">
+                        <p>These NFTs are minted on the Polygon network for low gas fees and fast transactions.</p>
+                        <p>Each NFT is unique and represents your journaling achievements.</p>
+                        <p>Higher point NFTs are more rare and have special features.</p>
+                    </div>
+                    <a href="/rewards" class="back-btn">
+                        <i class="fas fa-arrow-left"></i> Back to Rewards
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NFT Purchase Modal -->
+    <div id="purchase-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Confirm NFT Purchase</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="nft-preview-container">
+                    <img id="modal-nft-image" src="" alt="NFT Preview">
+                    <div class="nft-details">
+                        <h3 id="modal-nft-name"></h3>
+                        <p id="modal-nft-description"></p>
+                        <div class="nft-cost">
+                            <span id="modal-nft-cost"></span> points
+                        </div>
+                    </div>
+                </div>
+                <div class="purchase-warning">
+                    <p>This action will deduct points from your account and mint the NFT to your wallet.</p>
+                    <p>This action cannot be undone.</p>
+                </div>
+                <div class="purchase-actions">
+                    <button id="confirm-purchase" class="action-btn purchase-btn">
+                        <i class="fas fa-check-circle"></i> Confirm Purchase
+                    </button>
+                    <button id="cancel-purchase" class="action-btn cancel-btn">
+                        <i class="fas fa-times-circle"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden elements to store Flask variables -->
+    <div id="username-data" data-username="{{ username }}" style="display: none;"></div>
+    <div id="wallet-data" data-wallet="{{ wallet_address }}" style="display: none;"></div>
+
+    <script>
+        // Pass Flask variables to JavaScript
+        const username = "{{ username }}";
+        const currentWalletAddress = "{{ wallet_address }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/nft.js') }}"></script>
+</body>
+</html>

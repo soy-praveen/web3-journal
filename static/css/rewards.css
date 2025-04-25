@@ -1,0 +1,763 @@
+/* Rewards Page Styles */
+:root {
+    --primary-color: #8A2BE2;
+    --primary-dark: #6A1B9A;
+    --secondary-color: #6A5ACD;
+    --accent-color: #9370DB;
+    --accent-light: #B39DDB;
+    --text-color: #333;
+    --text-light: #666;
+    --bg-color: #f9fafb;
+    --card-bg: rgba(255, 255, 255, 0.15);
+    --card-border: rgba(255, 255, 255, 0.2);
+    --error-color: #FF5252;
+    --success-color: #00C853;
+    --warning-color: #FFAB00;
+    --glass-blur: 12px;
+    --anim-fast: 0.2s;
+    --anim-medium: 0.4s;
+    --anim-slow: 0.8s;
+}
+
+.rewards-section {
+    flex: 3;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--card-border);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    transition: transform var(--anim-medium) ease, box-shadow var(--anim-medium) ease;
+}
+
+.rewards-section:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.rewards-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: fadeIn var(--anim-medium) ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.rewards-header h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.rewards-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--accent-light);
+    transition: width var(--anim-medium) ease;
+}
+
+.rewards-header:hover h2::after {
+    width: 50%;
+}
+
+.rewards-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+}
+
+.rewards-summary {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.points-card, .streak-card {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--anim-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.points-card::before, .streak-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(-100%);
+    transition: transform var(--anim-medium) ease;
+}
+
+.points-card:hover, .streak-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.points-card:hover::before, .streak-card:hover::before {
+    transform: translateX(100%);
+}
+
+.points-icon, .streak-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    transition: all var(--anim-medium) ease;
+}
+
+.points-icon {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: white;
+}
+
+.streak-icon {
+    background: linear-gradient(135deg, #FF6B6B, #FF0000);
+    color: white;
+}
+
+.points-card:hover .points-icon, .streak-card:hover .streak-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.points-details, .streak-details {
+    flex: 1;
+}
+
+.points-details h3, .streak-details h3 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.points-details h3::after, .streak-details h3::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-light);
+    transition: width var(--anim-medium) ease;
+}
+
+.points-card:hover .points-details h3::after, 
+.streak-card:hover .streak-details h3::after {
+    width: 100%;
+}
+
+.points-details p, .streak-details p {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+    transition: all var(--anim-medium) ease;
+}
+
+.points-card:hover .points-details p, 
+.streak-card:hover .streak-details p {
+    transform: scale(1.05);
+}
+
+.rewards-info {
+    margin-bottom: 1rem;
+    animation: fadeIn var(--anim-medium) ease;
+    animation-delay: 0.1s;
+    animation-fill-mode: both;
+}
+
+.rewards-info h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.rewards-info h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-light);
+    transition: width var(--anim-medium) ease;
+}
+
+.rewards-info:hover h3::after {
+    width: 100%;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--anim-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(-100%);
+    transition: transform var(--anim-medium) ease;
+}
+
+.info-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.info-card:hover::before {
+    transform: translateX(100%);
+}
+
+.info-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9370DB, #8A2BE2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    transition: all var(--anim-medium) ease;
+}
+
+.info-card:hover .info-icon {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.info-details {
+    flex: 1;
+}
+
+.info-details h4 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    transition: all var(--anim-medium) ease;
+}
+
+.info-card:hover .info-details h4 {
+    transform: translateX(5px);
+}
+
+.info-details p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.info-points {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    transition: all var(--anim-medium) ease;
+}
+
+.info-card:hover .info-points {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.streak-progress {
+    margin-bottom: 1rem;
+    animation: fadeIn var(--anim-medium) ease;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+}
+
+.streak-progress h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.streak-progress h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-light);
+    transition: width var(--anim-medium) ease;
+}
+
+.streak-progress:hover h3::after {
+    width: 100%;
+}
+
+.progress-container {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        rgba(255, 255, 255, 0) 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #9370DB, #8A2BE2);
+    border-radius: 5px;
+    width: 0%;
+    transition: width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.progress-days {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.day {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    transition: all var(--anim-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+.day::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all var(--anim-medium) ease;
+}
+
+.day:hover {
+    transform: scale(1.1);
+}
+
+.day:hover::before {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.day.active {
+    background: #8A2BE2;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+}
+
+.day.active::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.progress-info {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.rewards-history {
+    margin-bottom: 1rem;
+    animation: fadeIn var(--anim-medium) ease;
+    animation-delay: 0.3s;
+    animation-fill-mode: both;
+}
+
+.rewards-history h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.rewards-history h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-light);
+    transition: width var(--anim-medium) ease;
+}
+
+.rewards-history:hover h3::after {
+    width: 100%;
+}
+
+.history-list {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.2rem;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--anim-medium) ease;
+}
+
+.history-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-date {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.history-action {
+    color: white;
+    font-size: 0.9rem;
+}
+
+.history-points {
+    color: #FFD700;
+    font-weight: 600;
+    transition: all var(--anim-medium) ease;
+}
+
+.history-item:hover .history-points {
+    transform: scale(1.1);
+}
+
+.empty-history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+.empty-history i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--anim-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.back-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform var(--anim-medium) ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.back-btn i {
+    transition: transform var(--anim-medium) ease;
+}
+
+.back-btn:hover i {
+    transform: translateX(-3px);
+}
+
+/* NFT Preview in Rewards Page */
+.nft-preview {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeIn var(--anim-medium) ease;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+}
+
+.nft-preview h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.nft-preview h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-light);
+    transition: width var(--anim-medium) ease;
+}
+
+.nft-preview:hover h3::after {
+    width: 100%;
+}
+
+.nft-teaser {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    transition: all var(--anim-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.nft-teaser::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(-100%);
+    transition: transform var(--anim-medium) ease;
+}
+
+.nft-teaser:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nft-teaser:hover::before {
+    transform: translateX(100%);
+}
+
+.nft-card-preview {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.nft-card-preview img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: all var(--anim-medium) ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nft-teaser:hover .nft-card-preview img {
+    transform: scale(1.05) rotate(3deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.nft-info h4 {
+    color: white;
+    margin-bottom: 5px;
+    transition: all var(--anim-medium) ease;
+}
+
+.nft-teaser:hover .nft-info h4 {
+    transform: translateX(5px);
+}
+
+.nft-info p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.view-nfts-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--anim-medium) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 100%;
+    max-width: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.view-nfts-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+    transition: transform var(--anim-medium) ease;
+}
+
+.view-nfts-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.view-nfts-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.view-nfts-btn i {
+    transition: transform var(--anim-medium) ease;
+}
+
+.view-nfts-btn:hover i {
+    transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+    }
+    
+    .rewards-summary {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Journal - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <h1>Kryple</h1>
+                <p>Digital Journal</p>
+            </div>
+            <div class="user-controls">
+                <span class="user-welcome">Welcome, {{ username }}</span>
+                <a href="/logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+                <li><a href="/dashboard">Home</a></li>
+                <li><span aria-current="page">Journal</span></li>
+            </ol>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content-container">
+            <div class="journal-section">
+                <div class="date-navigation">
+                    <ul id="date-tabs">
+                        <!-- Date tabs will be populated by JavaScript -->
+                    </ul>
+                </div>
+                
+                <div class="journal-content">
+                    <div class="journal-header">
+                        <h2 id="current-date">Today's Journal</h2>
+                        <div class="journal-actions">
+                            <button id="save-journal" class="action-btn save-btn">
+                                <i class="fas fa-save"></i> Save
+                            </button>
+                            <button id="vent-button" class="action-btn vent-btn">
+                                <i class="fas fa-wind"></i> Vent
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="journal-body">
+                        <textarea id="journal-text" placeholder="Write your thoughts for today..."></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="glass-card">
+                    <h3>Your Wallet</h3>
+                    <div class="wallet-address">{{ wallet_address }}</div>
+                </div>
+                
+                <div class="glass-card">
+                    <h3>Journal Stats</h3>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Entries</span>
+                            <span class="stat-value" id="total-entries">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Current Streak</span>
+                            <span class="stat-value" id="current-streak">0 days</span>
+                        </div>
+                    </div>
+                    <a href="/rewards" class="rewards-btn">
+                        <i class="fas fa-gift"></i> Rewards
+                    </a>
+                </div>
+                
+                
+                <!-- Add Global Chat Section -->
+                <div class="glass-card">
+                    <h3>Community</h3>
+                    <a href="/global" class="global-chat-btn">
+                        <i class="fas fa-comments"></i> Global Chat
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Wallet Authentication</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Please sign with your wallet to view this journal entry.</p>
+                <div id="auth-status" class="auth-status"></div>
+                <button id="sign-button" class="action-btn">
+                    <i class="fas fa-signature"></i> Sign Message
+                </button>
+            </div>
+        </div>
+    </div>
+    
+<!-- Hidden elements to store Flask variables -->
+<div id="username-data" data-username="{{ username }}" style="display: none;"></div>
+<div id="wallet-data" data-wallet="{{ wallet_address }}" style="display: none;"></div>
+    <!-- Add this right before including dashboard.js -->
+    <script>
+        // Pass Flask variables to JavaScript
+        const username = "{{ username }}";
+        const currentWalletAddress = "{{ wallet_address }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>

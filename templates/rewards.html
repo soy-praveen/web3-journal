@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Journal - Rewards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rewards.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <h1>Kryple</h1>
+                <p>Digital Journal</p>
+            </div>
+            <div class="user-controls">
+                <span class="user-welcome">Welcome, {{ username }}</span>
+                <a href="/logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+                <li><a href="/dashboard">Home</a></li>
+                <li><span aria-current="page">Rewards</span></li>
+            </ol>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content-container">
+            <div class="rewards-section">
+                <div class="rewards-header">
+                    <h2><i class="fas fa-gift"></i> Your Rewards</h2>
+                    <p>Earn points by maintaining your daily journal streak!</p>
+                </div>
+                
+                <div class="rewards-summary">
+                    <div class="points-card">
+                        <div class="points-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="points-details">
+                            <h3>Total Points</h3>
+                            <p id="total-points">0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="streak-card">
+                        <div class="streak-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="streak-details">
+                            <h3>Current Streak</h3>
+                            <p id="current-streak-display">0 days</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rewards-info">
+                    <h3>How to Earn Points</h3>
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="info-details">
+                            <h4>Daily Journaling</h4>
+                            <p>Write in your journal every day to maintain your streak</p>
+                        </div>
+                        <div class="info-points">
+                            <span>+20 points</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="streak-progress">
+                    <h3>Streak Progress</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="streak-progress-bar"></div>
+                    </div>
+                    <div class="progress-days">
+                        <div class="day" data-day="1">1</div>
+                        <div class="day" data-day="2">2</div>
+                        <div class="day" data-day="3">3</div>
+                        <div class="day" data-day="4">4</div>
+                        <div class="day" data-day="5">5</div>
+                        <div class="day" data-day="6">6</div>
+                        <div class="day" data-day="7">7</div>
+                    </div>
+                    <p class="progress-info">Complete a 7-day streak to earn bonus points!</p>
+                </div>
+                
+                <div class="rewards-history">
+                    <h3>Points History</h3>
+                    <div class="history-list" id="points-history">
+                        <!-- Points history will be populated by JavaScript -->
+                        <div class="empty-history">
+                            <i class="fas fa-history"></i>
+                            <p>Your points history will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="glass-card">
+                    <h3>Your Wallet</h3>
+                    <div class="wallet-address">{{ wallet_address }}</div>
+                </div>
+                
+                <div class="glass-card">
+                    <h3>Rewards Stats</h3>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Points Earned Today</span>
+                            <span class="stat-value" id="today-points">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Longest Streak</span>
+                            <span class="stat-value" id="longest-streak">1 days</span>
+                        </div>
+                    </div>
+                    <a href="/dashboard" class="back-btn">
+                        <i class="fas fa-arrow-left"></i> Back to Journal
+                    </a>
+                </div>
+                
+                <!-- Add NFT Preview below Rewards Stats -->
+                <div class="glass-card">
+                    <h3>NFT Rewards</h3>
+                    <p>Use your journal points to claim exclusive NFTs on Polygon</p>
+                    <div class="nft-card-preview">
+                        <img src="{{ url_for('static', filename='img/nft-preview.jpg') }}" alt="NFT Preview" onerror="this.src='https://via.placeholder.com/80/9370DB/FFFFFF?text=NFT'">
+                        <div class="nft-info">
+                            <h4>Journal Gems Collection</h4>
+                            <p>Starting at 1,000 points</p>
+                        </div>
+                    </div>
+                    <a href="/nft" class="view-nfts-btn">
+                        <i class="fas fa-gem"></i> View NFT Collection
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Hidden elements to store Flask variables -->
+    <div id="username-data" data-username="{{ username }}" style="display: none;"></div>
+    <div id="wallet-data" data-wallet="{{ wallet_address }}" style="display: none;"></div>
+
+    <script>
+        // Pass Flask variables to JavaScript
+        const username = "{{ username }}";
+        const currentWalletAddress = "{{ wallet_address }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/rewards.js') }}"></script>
+</body>
+</html>

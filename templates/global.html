@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Journal - Global Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header>
+            <div class="brand">
+                <h1>Kryple</h1>
+                <p>Digital Journal</p>
+            </div>
+            <div class="user-controls">
+                <span class="user-welcome">Welcome, {{ username }}</span>
+                <a href="/logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+                <li><a href="/dashboard">Home</a></li>
+                <li><span aria-current="page">Global Chat</span></li>
+            </ol>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content-container">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h2><i class="fas fa-globe"></i> Global Chat</h2>
+                    <p>Connect with other journal users. Messages are limited to 50 words.</p>
+                </div>
+                
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Messages will be loaded here -->
+                    <div class="loading-messages">
+                        <div class="loader"></div>
+                        <p>Loading messages...</p>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <textarea id="message-input" placeholder="Type your message (max 50 words)..." maxlength="500"></textarea>
+                    <div class="word-counter">
+                        <span id="word-count">0</span>/50 words
+                    </div>
+                    <button id="send-button" class="action-btn send-btn">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <div class="glass-card">
+                    <h3>Your Wallet</h3>
+                    <div class="wallet-address">{{ wallet_address }}</div>
+                </div>
+                
+                <div class="glass-card">
+                    <h3>Chat Guidelines</h3>
+                    <ul class="guidelines">
+                        <li>Be respectful to others</li>
+                        <li>No spam or promotional content</li>
+                        <li>Keep messages under 50 words</li>
+                        <li>Share journal insights and tips</li>
+                        <li>Support each other's journaling journey</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card">
+                    <a href="/dashboard" class="back-btn">
+                        <i class="fas fa-arrow-left"></i> Back to Journal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden element to store username -->
+    <div id="username-data" data-username="{{ username }}" style="display: none;"></div>
+
+    <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+</body>
+</html>

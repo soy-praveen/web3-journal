@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kryple - Digital Journal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <h1>Kryple</h1>
+            <p>Digital Journal</p>
+        </div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="#privacy">Privacy</a>
+            <a href="#rewards">Rewards</a>
+            <a href="/login" class="login-btn">Login / Sign Up</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Your Thoughts, Secured</h1>
+            <p>A modern journaling platform with blockchain wallet authentication</p>
+            <a href="/login" class="cta-button">Start Journaling</a>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Features</h2>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <i class="fas fa-lock"></i>
+                <h3>Secure Authentication</h3>
+                <p>Connect with your cryptocurrency wallet for passwordless, secure access to your journal.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Daily Journaling</h3>
+                <p>Record your thoughts with date-based organization and easy navigation between entries.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-wind"></i>
+                <h3>Emotional Release</h3>
+                <p>Use the dedicated venting feature to express your emotions in a safe, private space.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-comments"></i>
+                <h3>Community</h3>
+                <p>Connect with fellow journalers through the global chat feature with 50-word messages.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-gift"></i>
+                <h3>Rewards System</h3>
+                <p>Earn 20 points for each day in your journaling streak to build consistent habits.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Cross-Device Access</h3>
+                <p>Access your journal from any device with your wallet for seamless journaling.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="privacy" class="privacy">
+        <h2>Your Privacy Matters</h2>
+        <div class="privacy-content">
+            <div class="privacy-text">
+                <p>At Kryple Digital Journal, we prioritize your privacy above all else. Your personal thoughts and reflections deserve the highest level of protection.</p>
+                <ul>
+                    <li><i class="fas fa-shield-alt"></i> <strong>Blockchain Authentication:</strong> Secure access through cryptographic wallet signatures</li>
+                    <li><i class="fas fa-user-lock"></i> <strong>Private Storage:</strong> Journal entries are stored locally in your browser</li>
+                    <li><i class="fas fa-key"></i> <strong>Signature Verification:</strong> Additional security layer when accessing past entries</li>
+                    <li><i class="fas fa-eye-slash"></i> <strong>No Data Mining:</strong> Your journal content is never analyzed or used for advertising</li>
+                </ul>
+            </div>
+            <div class="privacy-image">
+                <img src="{{ url_for('static', filename='img/privacy.svg') }}" alt="Privacy Illustration">
+            </div>
+        </div>
+    </section>
+
+    <section id="rewards" class="rewards">
+        <h2>Build a Journaling Habit</h2>
+        <div class="rewards-content">
+            <div class="rewards-image">
+                <img src="{{ url_for('static', filename='img/rewards.svg') }}" alt="Rewards Illustration">
+            </div>
+            <div class="rewards-text">
+                <p>Consistency is key to effective journaling. Our rewards system helps you build and maintain a daily journaling habit.</p>
+                <div class="reward-points">
+                    <div class="point">
+                        <div class="point-value">20</div>
+                        <div class="point-label">points per day</div>
+                    </div>
+                    <div class="streak-tracker">
+                        <div class="day active">1</div>
+                        <div class="day active">2</div>
+                        <div class="day active">3</div>
+                        <div class="day">4</div>
+                        <div class="day">5</div>
+                        <div class="day">6</div>
+                        <div class="day">7</div>
+                    </div>
+                </div>
+                <p>Track your progress, build streaks, and watch your points accumulate as you develop your journaling practice.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>Ready to Start Your Journaling Journey?</h2>
+        <p>Join thousands of users who trust Kryple Digital Journal for their daily reflections.</p>
+        <a href="/login" class="cta-button">Create Your Journal</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <h2>Kryple</h2>
+                <p>Digital Journal</p>
+            </div>
+            <div class="footer-links">
+                <div class="link-group">
+                    <h3>Navigation</h3>
+                    <a href="#features">Features</a>
+                    <a href="#privacy">Privacy</a>
+                    <a href="#rewards">Rewards</a>
+                </div>
+                <div class="link-group">
+                    <h3>Legal</h3>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="link-group">
+                    <h3>Connect</h3>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Support</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Kryple Digital Journal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>
